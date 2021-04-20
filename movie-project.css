@@ -35,15 +35,31 @@ body {
     margin-top: 10px;
 }
 
+#search-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: calc(100% - 20px);
+    margin: 10px;
+}
+
 #adding-movies {
-    margin-top: 10px;
+    margin: 10px;
+    border: 1px solid lightgray;
 }
 
-#adding-movies input {
-    border-radius: 5px;
+#adding-movies .input-group {
+    width: calc(100% - 10px);
+    margin: 5px;
 }
 
-#search-bar input {
+#button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#add-movie-button {
     border-radius: 5px;
 }
 
@@ -57,14 +73,6 @@ body {
     width: 250px;
 }
 
-#search {
-
-}
-
-#title-movie {
-
-}
-
-#rating {
-
+.card-footer {
+    text-align: center;
 }
