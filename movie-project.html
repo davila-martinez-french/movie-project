@@ -17,85 +17,62 @@
 
     <div id="page-content">
 
-        <div id="search-bar">
-            <label for="search"></label>
-            <input id="search" type="text" placeholder="search">
-            <button id="search-button" type="submit">Submit</button>
+        <div id="search-container">
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Search" aria-label="Recipient's username" aria-describedby="button-addon2">
+                <button class="btn btn-primary" type="button" id="button-addon2">Submit</button>
+            </div>
         </div>
 
         <form id="adding-movies">
-            <label for="title-movie"></label>
-            <input id="title-movie" type="text" placeholder="Movie title">
+            <h4 class="text-center">Add Movie!</h4>
+            <div class="input-group mt-3 mb-3">
+                <span class="input-group-text">Title</span>
+                <input type="text" aria-label="Title" class="form-control">
+            </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text">Director</span>
+                <input type="text" aria-label="Director" class="form-control">
+            </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text">Year</span>
+                <input type="text" aria-label="Year" class="form-control">
+            </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text">Genre</span>
+                <input type="text" aria-label="Genre" class="form-control">
+            </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text">Actors</span>
+                <input type="text" aria-label="Actors" class="form-control">
+            </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text">Plot</span>
+                <input type="text" aria-label="Plot" class="form-control">
+            </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text">Rating</span>
+                <input type="text" aria-label="Rating" class="form-control">
+            </div>
+            <div class="input-group mb-3">
+                <label class="input-group-text" for="inputGroupFile01">Upload</label>
+                <input type="file" class="form-control" id="inputGroupFile01">
+            </div>
 
-            <label for="rating"></label>
-            <input id="rating" type="text" placeholder="Rating">
-            <button class="add-movie-button" type="submit">Submit</button>
-            <button class="edit-movie-button" type="submit">Edit</button>
-
+            <div id="button-container">
+                <button id="add-movie-button" type="button" class="btn btn-primary">Submit</button>
+            </div>
         </form>
     </div>
 
-<div id="wrapper" class="row row-cols-1 row-cols-md-4 g-4">
+<div id="wrapper" class="row">
     <div class="col">
         <div class="card h-100">
-            <img src="..." class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-            </div>
+            <img src="save-water-drink-champagne.JPG" class="card-img-top" alt="image">
             <div class="card-footer">
-                <small class="text-muted">Last updated 3 mins ago</small>
-                <button class="delete-movie-button" type="submit">Delete</button>
-                <button class="edit-movie-button" type="submit">Edit</button>
-
-
-            </div>
-        </div>
-    </div>
-    <div class="col">
-        <div class="card h-100">
-            <img src="..." class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-            </div>
-            <div class="card-footer">
-                <small class="text-muted">Last updated 3 mins ago</small>
-                <button class="delete-movie-button" type="submit">Delete</button>
-                <button class="edit-movie-button" type="submit">Edit</button>
-
-            </div>
-        </div>
-    </div>
-    <div class="col">
-        <div class="card h-100">
-            <img src="..." class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-            </div>
-            <div class="card-footer">
-                <small class="text-muted">Last updated 3 mins ago</small>
-                <button class="delete-movie-button" type="submit">Delete</button>
-                <button class="edit-movie-button" type="submit">Edit</button>
-
-
-            </div>
-        </div>
-    </div>
-    <div class="col">
-        <div class="card h-100">
-            <img src="..." class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-            </div>
-            <div class="card-footer">
-                <small class="text-muted">Last updated 3 mins ago</small>
-                <button class="delete-movie-button" type="submit">Delete</button>
-                <button class="edit-movie-button" type="submit">Edit</button>
-
-
+                <h4 class="text-center">Sergio</h4>
+                <button id="edit-movie-button" type="button" class="btn btn-primary">Edit</button>
+                <button id="delete-movie-button" type="button" class="btn btn-primary">Delete</button>
             </div>
         </div>
     </div>
