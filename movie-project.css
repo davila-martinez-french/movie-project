@@ -7,8 +7,8 @@
 body {
     border: 1px solid red;
     background-color: black;
-    height: 100%;
-    width: 100%;
+    /*height: 100%;*/
+    /*width: 100%;*/
 }
 
 
@@ -16,10 +16,19 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100em;
+    height: 100vh;
+    width: 100%;
 }
 
 #loading-title {
     font-size: 7em;
+    color: lightgray;
+}
+
+#page-content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     color: lightgray;
 }
