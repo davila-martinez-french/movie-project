@@ -7,8 +7,6 @@
 body {
     border: 1px solid red;
     background-color: black;
-    /*height: 100%;*/
-    /*width: 100%;*/
 }
 
 
@@ -25,10 +23,30 @@ body {
     color: lightgray;
 }
 
+#title {
+    color: lightgray;
+    text-align: center;
+}
+
 #page-content{
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
     color: lightgray;
+    margin-top: 10px;
+}
+
+#adding-movies {
+    margin-top: 10px;
+}
+
+#search {
+
+}
+
+#title-movie {
+
+}
+
+#rating {
+
 }
