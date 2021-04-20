@@ -1,0 +1,25 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    border: 1px solid red;
+    background-color: black;
+    height: 100%;
+    width: 100%;
+}
+
+
+#loading-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100em;
+}
+
+#loading-title {
+    font-size: 7em;
+    color: lightgray;
+}
