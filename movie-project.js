@@ -1,6 +1,5 @@
 "use strict";
 
-
 const movieApiURL = "https://codeup-json-server.glitch.me/movies";
 
 // Initial loading page below
@@ -28,6 +27,27 @@ const movieApiURL = "https://codeup-json-server.glitch.me/movies";
 
 let movieObject = {};
 
+function renderMovie(movie) {
+    let movieContentCard = `<div class="card h-100" id="movie-card">
+            <img src=${movie.poster} class="card-img-top" alt="image">
+            <div class="card-footer">
+                <h4 class="text-center">${movie.title}</h4>
+                <button id="edit-movie-button" type="button" class="btn btn-primary">Edit</button>
+                <button id="delete-movie-button" type="button" class="btn btn-primary">Delete</button>
+            </div>
+        </div>`;
+
+    return movieContentCard;
+}
+
+function renderMovies(movies) {
+    var movieContentCard = '';
+    for(var i = 0; i < movies.length; i++) {
+        movieContentCard += renderMovie(movies[i]);
+    }
+    return movieContentCard;
+}
+
 
 $('#add-movie-button').click(function (e) {
     //console.log(e);
@@ -41,6 +61,7 @@ $('#add-movie-button').click(function (e) {
         "rating": $('#rating-input').val(),
         "poster": $('#image-upload').val()
     };
+    console.log(movieObject);
 
     let options = {
         method: "POST",
@@ -50,25 +71,12 @@ $('#add-movie-button').click(function (e) {
         body: JSON.stringify(movieObject)
     }
 
+    console.log(movieObject);
+
     fetch(movieApiURL, options).then(function(response) {
         console.log(response)
     })
-    console.log(movieObject);
 })
-
-
-let options = {
-    method: "POST",
-    headers: {
-        'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(movieObject)
-}
-
-fetch(movieApiURL, options).then(function(response) {
-    console.log(response)
-})
-
 
 // Search Bar
 function movies(movie) {
@@ -87,13 +95,12 @@ function movies(movie) {
         })
 }
 
-movies("down");
 
 
 // let deleteMethod = {
 //       method: "DELETE"
 // }
-// for (let i = 5; i <= 66; i++) {
+// for (let i = 5; i <= 12; i++) {
 // fetch(movieApiURL + `/${i}`, deleteMethod).then(function (response) {
 //     console.log(response)
 // })}
