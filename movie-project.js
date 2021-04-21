@@ -43,7 +43,7 @@ const movieApiURL = "https://third-persistent-damselfly.glitch.me/movies";
 // })
 
 $('#search-button').click(function(e) {
-    // e.preventDefault();
+    e.preventDefault();
     const searchInput = $('#search-bar').val();
     console.log(searchInput);
     fetch(movieApiURL).then(response => response.json()).then(function (movie) {
@@ -101,8 +101,7 @@ $('#add-movie-button').click(function (e) {
 
 
 // Show Movies/Create Movie cards
-const main = document.getElementById("main");
-// Function
+
 function showMovies(url){
     fetch(url).then(response => {
         // console.log(response.json());
@@ -117,16 +116,46 @@ function showMovies(url){
                     <div class="card-footer">
                         <h4 class="text-center">${movie[i].title}</h4>
                         <button id="edit-movie-button" type="button" class="btn btn-primary">Edit</button>
-                        <button id="delete-movie-button" type="button" class="btn btn-primary">Delete</button>
+                        <button id="delete-movie-button" type="button" class="btn btn-primary ${movie[i].id}">Delete</button>
                     </div>
                 </div>`
+                console.log(movie[i].id);
                 document.getElementById('wrapper').innerHTML = (movieContentCard);
+                // $("#delete-movie-button").click(function (e) {
+                //     let deleteMethod = {
+                //         method: "DELETE"
+                //     }
+                //
+                //     fetch(movieApiURL + `/${movie[i].id}`, deleteMethod).then(function (response) {
+                //         console.log(response)
+                //     })
+                //
+                // })
             }
+
+
         });
 }
 showMovies(movieApiURL);
 
+// $("#delete-movie-button").click(function (e) {
+//     let deleteMethod = {
+//         method: "DELETE"
+//     }
+//
+//     fetch(movieApiURL + `/${movie[i].id}`, deleteMethod).then(function (response) {
+//         console.log(response)
+//     })
+//
+// })
 
+// function deleteME(`${movie[i].id}`) {
+//     $("delete-movie-button").click(function (e) {
+//         let deleteMethod = {
+//             method: "DELETE"
+//         }
+//     })
+// }
 
 
 
