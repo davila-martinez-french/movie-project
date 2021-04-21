@@ -27,56 +27,34 @@ const movieApiURL = "https://codeup-json-server.glitch.me/movies";
 
 let movieObject = {};
 
-// function renderMovie(movie) {
-//     let movieContentCard = `<div class="card h-100" id="movie-card">
-//             <img src=${movie.poster} class="card-img-top" alt="image">
-//             <div class="card-footer">
-//                 <h4 class="text-center">${movie.title}</h4>
-//                 <button id="edit-movie-button" type="button" class="btn btn-primary">Edit</button>
-//                 <button id="delete-movie-button" type="button" class="btn btn-primary">Delete</button>
-//             </div>
-//         </div>`;
-//
-//     return movieContentCard;
-// }
-//
-// function renderMovies(movies) {
-//     var movieContentCard = '';
-//     for(var i = 0; i < movies.length; i++) {
-//         movieContentCard += renderMovie(movies[i]);
-//     }
-//     return movieContentCard;
-// }
+$('#add-movie-button').click(function (e) {
+    //console.log(e);
+    movieObject = {
+        "title": $('#title-input').val(),
+        "director": $('#director-input').val(),
+        "year": $('#year-input').val(),
+        "genre": $('#genre-input').val(),
+        "actors": $('#actors-input').val(),
+        "plot": $('#plot-input').val(),
+        "rating": $('#rating-input').val(),
+        "poster": $('#image-upload').val()
+    };
+    console.log(movieObject);
 
+    let options = {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(movieObject)
+    }
 
-// $('#add-movie-button').click(function (e) {
-//     //console.log(e);
-//     movieObject = {
-//         "title": $('#title-input').val(),
-//         "director": $('#director-input').val(),
-//         "year": $('#year-input').val(),
-//         "genre": $('#genre-input').val(),
-//         "actors": $('#actors-input').val(),
-//         "plot": $('#plot-input').val(),
-//         "rating": $('#rating-input').val(),
-//         "poster": $('#image-upload').val()
-//     };
-//     console.log(movieObject);
-//
-//     let options = {
-//         method: "POST",
-//         headers: {
-//             'Content-Type': 'application/json',
-//         },
-//         body: JSON.stringify(movieObject)
-//     }
-//
-//     console.log(movieObject);
-//
-//     fetch(movieApiURL, options).then(function(response) {
-//         console.log(response)
-//     })
-// })
+    console.log(movieObject);
+
+    fetch(movieApiURL, options).then(function(response) {
+        console.log(response)
+    })
+})
 
 // Search Bar
 // function movies(movie) {
@@ -110,15 +88,15 @@ function showMovies(url){
         let movieContentCard = ``;
         console.log(movie);
             for (let i = 0; i <= 8; i++) {
-                       movieContentCard += `<div class="card h-100" id="movie-card">
-                    <img src=${movie[i].poster} class="card-img-top" alt="image">
+                       movieContentCard += `<div class="card" id="movie-card">
+                    <img src="${movie[i].poster}" class="card-img-top" alt="image" style="width: 250px; height: 336px;">
                     <div class="card-footer">
                         <h4 class="text-center">${movie[i].title}</h4>
                         <button id="edit-movie-button" type="button" class="btn btn-primary">Edit</button>
                         <button id="delete-movie-button" type="button" class="btn btn-primary">Delete</button>
                     </div>
                 </div>`
-                document.getElementById('main').innerHTML = (movieContentCard);
+                document.getElementById('wrapper').innerHTML = (movieContentCard);
             }
 
         });
