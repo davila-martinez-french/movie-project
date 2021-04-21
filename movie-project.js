@@ -26,29 +26,48 @@ const movieApiURL = "https://codeup-json-server.glitch.me/movies";
 
 
 
-let movieObject = {
-    "title": $('#title-input').val()
-};
+let movieObject = {};
 
-
-//console.log(movieObject);
 
 $('#add-movie-button').click(function (e) {
     //console.log(e);
-    console.log(movieObject.title);
+    movieObject = {
+        "title": $('#title-input').val(),
+        "director": $('#director-input').val(),
+        "year": $('#year-input').val(),
+        "genre": $('#genre-input').val(),
+        "actors": $('#actors-input').val(),
+        "plot": $('#plot-input').val(),
+        "rating": $('#rating-input').val(),
+        "poster": $('#image-upload').val()
+    };
+
+    let options = {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(movieObject)
+    }
+
+    fetch(movieApiURL, options).then(function(response) {
+        console.log(response)
+    })
+    console.log(movieObject);
 })
 
-// let options = {
-//     method: "POST",
-//     headers: {
-//         'Content-Type': 'application/json',
-//     },
-//     body: JSON.stringify(movieObject)
-// }
-//
-// fetch(movieApiURL, options).then(function(response) {
-//     console.log(response)
-// })
+
+let options = {
+    method: "POST",
+    headers: {
+        'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(movieObject)
+}
+
+fetch(movieApiURL, options).then(function(response) {
+    console.log(response)
+})
 
 
 // Search Bar
