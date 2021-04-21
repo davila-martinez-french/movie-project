@@ -1,6 +1,6 @@
 "use strict";
 
-const movieApiURL = "https://codeup-json-server.glitch.me/movies";
+const movieApiURL = "https://third-persistent-damselfly.glitch.me/movies";
 
 // Initial loading page below
 // let pageLoader = setTimeout(function(){
@@ -23,8 +23,51 @@ const movieApiURL = "https://codeup-json-server.glitch.me/movies";
 //     console.log("Looking through inventory!");
 // });
 
+// Search Bar
+// $('#search-button').click(function (movie) {
+//     const searchInput = $('#search-bar').val();
+//     let movieResponse = fetch(movieApiURL);
+//     return movieResponse
+//         .then(response => {
+//             return response.json()
+//         })
+//         .then(movieData => {
+//             console.log(movieData);
+//             for (let movies of movieData) {
+//                 if(searchInput === movies.title) {
+//                     return showMovies(movieApiURL + `/5`);
+//                     // console.log($('#movie-card'));
+//                 }
+//             }
+//         })
+// })
+
+$('#search-button').click(function(e) {
+    // e.preventDefault();
+    const searchInput = $('#search-bar').val();
+    console.log(searchInput);
+    fetch(movieApiURL).then(response => response.json()).then(function (movie) {
+        for (let i = 0; i < movie.length; i++) {
+            if (searchInput === movie[i].title) {
+                let searchDisplay = `<div class="card" id="movie-card">
+                    <img src="${movie[i].poster}" class="card-img-top" alt="image" style="width: 250px; height: 336px;">
+                    <div class="card-footer">
+                        <h4 class="text-center">${movie[i].title}</h4>
+                        <button id="edit-movie-button" type="button" class="btn btn-primary">Edit</button>
+                        <button id="delete-movie-button" type="button" class="btn btn-primary">Delete</button>
+                    </div>
+                </div>`
+
+                document.getElementById('wrapper').innerHTML = (searchDisplay);
+            }
+        }
+    })
+})
 
 
+
+
+// Add movie function below
 let movieObject = {};
 
 $('#add-movie-button').click(function (e) {
@@ -56,30 +99,10 @@ $('#add-movie-button').click(function (e) {
     })
 })
 
-// Search Bar
-// function movies(movie) {
-//     let movieResponse = fetch(movieApiURL);
-//     return movieResponse
-//         .then(response => {
-//             //console.log(resp.json())
-//             return response.json()
-//         })
-//         .then(movieData => {
-//             for (let movies of movieData) {
-//                 if(movie === movies.title) {
-//                     // console.log($('#movie-card'));
-//                 }
-//             }
-//         })
-// }
 
-// const apiUrl = "https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=04c35731a5ee918f014970082a0088b1&page=1";
-// const IMGPATH = "https://image.tmdb.org/t/p/w1280";
-
-
-// Selecting our Elements.
+// Show Movies/Create Movie cards
 const main = document.getElementById("main");
-// function
+// Function
 function showMovies(url){
     fetch(url).then(response => {
         // console.log(response.json());
@@ -87,7 +110,8 @@ function showMovies(url){
     }).then(function(movie){
         let movieContentCard = ``;
         console.log(movie);
-            for (let i = 0; i <= 8; i++) {
+            for (let i = 0; i < movie.length; i++) {
+                // console.log(movie[i]);
                        movieContentCard += `<div class="card" id="movie-card">
                     <img src="${movie[i].poster}" class="card-img-top" alt="image" style="width: 250px; height: 336px;">
                     <div class="card-footer">
@@ -98,10 +122,12 @@ function showMovies(url){
                 </div>`
                 document.getElementById('wrapper').innerHTML = (movieContentCard);
             }
-
         });
 }
 showMovies(movieApiURL);
+
+
+
 
 
 // let deleteMethod = {
