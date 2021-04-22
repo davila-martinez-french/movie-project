@@ -9,38 +9,6 @@ const movieApiURL = "https://third-persistent-damselfly.glitch.me/movies";
 //
 // window.addEventListener("load", pageLoader);
 
-//Restful API below
-// let movieData = $.ajax(`${movieApiURL}`)
-// console.log(movieData);
-// // let JSON = movieData;
-// // console.log(JSON);
-// $.ajax(movieData).done(function(data) {
-//     //console.log(data);
-//     console.log("Success!")
-// }).fail(function(jqXhr) {
-//     console.log("Error: Check your file path.");
-// }).always(function() {
-//     console.log("Looking through inventory!");
-// });
-
-// Search Bar
-// $('#search-button').click(function (movie) {
-//     const searchInput = $('#search-bar').val();
-//     let movieResponse = fetch(movieApiURL);
-//     return movieResponse
-//         .then(response => {
-//             return response.json()
-//         })
-//         .then(movieData => {
-//             console.log(movieData);
-//             for (let movies of movieData) {
-//                 if(searchInput === movies.title) {
-//                     return showMovies(movieApiURL + `/5`);
-//                     // console.log($('#movie-card'));
-//                 }
-//             }
-//         })
-// })
 
 // Show Movies/Create Movie cards
 const grabMovies = () => {
@@ -93,8 +61,8 @@ $('#search-button').click(function(e) {
     })
 })
 
-// Dropdown Options Function
-let dropdownOptions = () => {
+// Dropdown Options function for delete
+let dropdownOptionsDelete = () => {
     grabMovies().then(function(movie){
         let options = ``;
         console.log(movie);
@@ -105,7 +73,23 @@ let dropdownOptions = () => {
         }
     });
 }
-dropdownOptions();
+
+dropdownOptionsDelete();
+
+// Dropdown Options function for edit
+let dropdownOptionsEdit = () => {
+    grabMovies().then(function(movie){
+        let options = ``;
+        console.log(movie);
+        for (let i = 0; i < movie.length; i++) {
+            // console.log(movie[i]);
+            options += `<option value="${movie[i].id}">${movie[i].title}</option>`
+            document.getElementById('edit-ids').innerHTML = (options);
+        }
+    });
+}
+
+dropdownOptionsEdit();
 
 // Delete Function
 $('#delete-content').click(function(e) {
@@ -113,12 +97,16 @@ $('#delete-content').click(function(e) {
     let deleteMethod = {
         method: "DELETE"
     }
-    console.log(`/${$('#movie-ids').val()}`)
+    // console.log(`/${$('#movie-ids').val()}`)
     fetch(movieApiURL + `/${$('#movie-ids').val()}`, deleteMethod).then(function (response) {
         console.log(response)
-    }).then(showMovies).then(dropdownOptions)
+    }).then(showMovies).then(dropdownOptionsDelete)
 })
 
+// Edit Movies
+let editMovie = () => {
+
+}
 
 
 // Add movie function below
@@ -152,32 +140,3 @@ $('#add-movie-button').click(function (e) {
         console.log(response)
     }).then(showMovies);
 });
-
-// $("#delete-movie-button").click(function (e) {
-//     let deleteMethod = {
-//         method: "DELETE"
-//     }
-//
-//     fetch(movieApiURL + `/${movie[i].id}`, deleteMethod).then(function (response) {
-//         console.log(response)
-//     })
-//
-// })
-
-// function deleteME(`${movie[i].id}`) {
-//     $("delete-movie-button").click(function (e) {
-//         let deleteMethod = {
-//             method: "DELETE"
-//         }
-//     })
-// }
-
-
-
-// let deleteMethod = {
-//       method: "DELETE"
-// }
-// for (let i = 5; i <= 12; i++) {
-// fetch(movieApiURL + `/${i}`, deleteMethod).then(function (response) {
-//     console.log(response)
-// })}
