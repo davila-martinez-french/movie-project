@@ -59,8 +59,6 @@ let showMovies = () => {
                     <img src="${movie[i].poster}" class="card-img-top" alt="image" style="width: 250px; height: 336px;">
                     <div class="card-footer">
                         <h4 class="text-center">${movie[i].title}</h4>
-                        <button id="edit-movie-button" type="button" class="btn btn-primary">Edit</button>
-                        <button id="delete-movie-button" type="button" class="btn btn-primary">Delete</button>
                     </div>
                 </div>`
             document.getElementById('wrapper').innerHTML = (movieContentCard);
@@ -95,6 +93,31 @@ $('#search-button').click(function(e) {
     })
 })
 
+// Dropdown Options Function
+let dropdownOptions = () => {
+    grabMovies().then(function(movie){
+        let options = ``;
+        console.log(movie);
+        for (let i = 0; i < movie.length; i++) {
+            // console.log(movie[i]);
+            options += `<option value="${movie[i].id}">${movie[i].title}</option>`
+            document.getElementById('movie-ids').innerHTML = (options);
+        }
+    });
+}
+dropdownOptions();
+
+// Delete Function
+$('#delete-content').click(function(e) {
+    e.preventDefault();
+    let deleteMethod = {
+        method: "DELETE"
+    }
+    console.log(`/${$('#movie-ids').val()}`)
+    fetch(movieApiURL + `/${$('#movie-ids').val()}`, deleteMethod).then(function (response) {
+        console.log(response)
+    }).then(showMovies).then(dropdownOptions)
+})
 
 
 
