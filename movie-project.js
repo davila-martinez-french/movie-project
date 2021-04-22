@@ -42,14 +42,45 @@ const movieApiURL = "https://third-persistent-damselfly.glitch.me/movies";
 //         })
 // })
 
+// Show Movies/Create Movie cards
+const grabMovies = () => {
+    return fetch(movieApiURL).then(response =>
+        response.json());
+}
+
+
+let showMovies = () => {
+    grabMovies().then(function(movie){
+        let movieContentCard = ``;
+        console.log(movie);
+        for (let i = 0; i < movie.length; i++) {
+            // console.log(movie[i]);
+            movieContentCard += `<div class="card" id="movie-card">
+                    <img src="${movie[i].poster}" class="card-img-top" alt="image" style="width: 250px; height: 336px;">
+                    <div class="card-footer">
+                        <h4 class="text-center">${movie[i].title}</h4>
+                        <button id="edit-movie-button" type="button" class="btn btn-primary">Edit</button>
+                        <button id="delete-movie-button" type="button" class="btn btn-primary">Delete</button>
+                    </div>
+                </div>`
+            document.getElementById('wrapper').innerHTML = (movieContentCard);
+        }
+    });
+}
+showMovies(movieApiURL);
+
+
+
+// Search Bar
 $('#search-button').click(function(e) {
     e.preventDefault();
     const searchInput = $('#search-bar').val();
     console.log(searchInput);
     fetch(movieApiURL).then(response => response.json()).then(function (movie) {
+        let searchDisplay = ``;
         for (let i = 0; i < movie.length; i++) {
-            if (searchInput === movie[i].title) {
-                let searchDisplay = `<div class="card" id="movie-card">
+            if (movie[i].title.toLowerCase().includes(searchInput.toLowerCase())) {
+                 searchDisplay += `<div class="card" id="movie-card">
                     <img src="${movie[i].poster}" class="card-img-top" alt="image" style="width: 250px; height: 336px;">
                     <div class="card-footer">
                         <h4 class="text-center">${movie[i].title}</h4>
@@ -96,47 +127,8 @@ $('#add-movie-button').click(function (e) {
 
     fetch(movieApiURL, options).then(function(response) {
         console.log(response)
-    })
-})
-
-
-// Show Movies/Create Movie cards
-
-function showMovies(url){
-    fetch(url).then(response => {
-        // console.log(response.json());
-        return response.json()
-    }).then(function(movie){
-        let movieContentCard = ``;
-        console.log(movie);
-            for (let i = 0; i < movie.length; i++) {
-                // console.log(movie[i]);
-                       movieContentCard += `<div class="card" id="movie-card">
-                    <img src="${movie[i].poster}" class="card-img-top" alt="image" style="width: 250px; height: 336px;">
-                    <div class="card-footer">
-                        <h4 class="text-center">${movie[i].title}</h4>
-                        <button id="edit-movie-button" type="button" class="btn btn-primary">Edit</button>
-                        <button id="delete-movie-button" type="button" class="btn btn-primary ${movie[i].id}">Delete</button>
-                    </div>
-                </div>`
-                console.log(movie[i].id);
-                document.getElementById('wrapper').innerHTML = (movieContentCard);
-                // $("#delete-movie-button").click(function (e) {
-                //     let deleteMethod = {
-                //         method: "DELETE"
-                //     }
-                //
-                //     fetch(movieApiURL + `/${movie[i].id}`, deleteMethod).then(function (response) {
-                //         console.log(response)
-                //     })
-                //
-                // })
-            }
-
-
-        });
-}
-showMovies(movieApiURL);
+    }).then(showMovies);
+});
 
 // $("#delete-movie-button").click(function (e) {
 //     let deleteMethod = {
