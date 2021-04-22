@@ -51,6 +51,14 @@ body {
     margin: 10px;
 }
 
+#edit-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: calc(100% - 20px);
+    margin: 10px;
+}
+
 #adding-movies {
     margin: 10px;
     border: 1px solid lightgray;
