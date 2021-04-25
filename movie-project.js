@@ -50,8 +50,8 @@ $('#search-button').click(function(e) {
                     <img src="${movie[i].poster}" class="card-img-top" alt="image" style="width: 250px; height: 336px;">
                     <div class="card-footer">
                         <h4 class="text-center">${movie[i].title}</h4>
-                        <button id="edit-movie-button" type="button" class="btn btn-primary">Edit</button>
-                        <button id="delete-movie-button" type="button" class="btn btn-primary">Delete</button>
+<!--                        <button id="edit-movie-button" type="button" class="btn btn-primary">Edit</button>-->
+<!--                        <button id="delete-movie-button" type="button" class="btn btn-primary">Delete</button>-->
                     </div>
                 </div>`
 
